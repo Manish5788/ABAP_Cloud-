@@ -1,0 +1,4 @@
+@EndUserText.label: 'SERVICE DEFINATION OF CUSTOM ENTITY'
+define service ZSD_MK_CUSTOM_ENTITY {
+  expose ZCDS_MKR_CUSTOME_ENTITY as Flight;
+}
