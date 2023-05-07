@@ -41,6 +41,7 @@ CLASS lhc_ZI_POHEDERMKTP IMPLEMENTATION.
   METHOD earlynumbering_cba_poitems.
 
 
+
     SELECT po_order,po_item AS itemno FROM zpoitems_db
      FOR ALL ENTRIES IN @entities
      WHERE po_order EQ @entities-PurchaseOrderNumber
