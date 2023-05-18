@@ -1,0 +1,11 @@
+@EndUserText.label: 'DCL control'
+@MappingRole: true
+define role ZCDS_POHEADER_DBMKR {
+    grant 
+        select
+            on
+                zcds_poheader_dbmkr
+                    where
+                        (CompCode) = aspect pfcg_auth(z_COM_AUT, ZCOCODE,ZCOCODE = '100');
+                        
+}
