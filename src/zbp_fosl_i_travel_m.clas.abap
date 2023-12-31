@@ -1,0 +1,5 @@
+CLASS zbp_fosl_i_travel_m DEFINITION PUBLIC ABSTRACT FINAL FOR BEHAVIOR OF zfosl_i_travel_m.
+ENDCLASS.
+
+CLASS zbp_fosl_i_travel_m IMPLEMENTATION.
+ENDCLASS.

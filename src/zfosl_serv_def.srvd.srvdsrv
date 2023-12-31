@@ -1,0 +1,6 @@
+@EndUserText.label: 'Service Def For ZFOSL_I_TRAVEL_M'
+define service ZFOSL_SERV_DEF {
+  expose ZFOSL_I_TRAVEL_M;
+  expose ZFOSL_I_BOOKING_M;
+  expose ZFOSL_I_BOOKSUP_M;
+}

@@ -1,0 +1,40 @@
+managed implementation in class zbp_fosl_i_travel_m unique;
+strict ( 2 );
+
+define behavior for ZFOSL_I_TRAVEL_M alias travel
+persistent table zfosl_travel_m
+lock master
+authorization master ( instance )
+etag master last_changed_at
+{
+  create;
+  update;
+  delete;
+  association _Booking { create; }
+}
+
+define behavior for ZFOSL_I_BOOKING_M alias booking
+persistent table zfosl_booking_m
+lock dependent by _Travel
+authorization dependent by _Travel
+etag master last_changed_at
+{
+  update;
+  delete;
+  field ( readonly ) travel_id;
+  association _Travel;
+  association _BookSupplement { create; }
+}
+
+define behavior for ZFOSL_I_BOOKSUP_M alias booksuppl
+persistent table zfosl_booksupp_m
+lock dependent by _Travel
+authorization dependent by _Travel
+etag master last_changed_at
+{
+  update;
+  delete;
+  field ( readonly ) travel_id, booking_id;
+  association _Travel;
+  association _Booking;
+}

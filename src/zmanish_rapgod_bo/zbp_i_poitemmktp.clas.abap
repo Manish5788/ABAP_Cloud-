@@ -1,4 +1,10 @@
-CLASS zbp_i_poitemmktp DEFINITION PUBLIC ABSTRACT FINAL FOR BEHAVIOR OF zi_pohedermktp.
+class ZBP_I_POITEMMKTP definition
+  public
+  create private .
+
+public section.
+protected section.
+private section.
 ENDCLASS.
 
 
