@@ -1,0 +1,56 @@
+managed implementation in class ZBP_FOSL_TRAVEL_M unique;
+strict ( 2 );
+with draft;
+
+define behavior for ZR_FOSL_TRAVEL_M
+persistent table zfosl_travel_m
+draft table ZFOSL_TRAVEL_M_D
+etag master LastChangedAt
+lock master total etag LastChanged
+authorization master( global )
+
+{
+  field ( mandatory : create )
+   TravelID;
+
+  field ( readonly )
+   CreatedAt,
+   CreatedBy,
+   LastChanged,
+   LastChangedAt,
+   LastChangedBy;
+
+  field ( readonly : update )
+   TravelID;
+
+
+  create;
+  update;
+  delete;
+
+  draft action Edit;
+  draft action Activate optimized;
+  draft action Discard;
+  draft action Resume;
+  draft determine action Prepare;
+
+  mapping for ZFOSL_TRAVEL_M
+  {
+    TravelID = travel_id;
+    AgencyID = agency_id;
+    CustomerID = customer_id;
+    BeginDate = begin_date;
+    EndDate = end_date;
+    BookingFee = booking_fee;
+    TotalPrice = total_price;
+    CurrencyCode = currency_code;
+    Description = description;
+    OverallStatus = overall_status;
+    CreatedBy = created_by;
+    CreatedAt = created_at;
+    LastChangedBy = last_changed_by;
+    LastChangedAt = last_changed_at;
+    LocalLastChanged = local_last_changed;
+    LastChanged = last_changed;
+  }
+}

@@ -1,0 +1,4 @@
+@EndUserText.label: 'Service definition for ZC_FOSL_TRAVEL_M'
+define service ZUI_FOSL_TRAVEL_M_O4 {
+  expose ZC_FOSL_TRAVEL_M;
+}

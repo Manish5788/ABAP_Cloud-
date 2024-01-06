@@ -10,6 +10,8 @@ CLASS lhc_travel IMPLEMENTATION.
 
   METHOD get_instance_authorizations.
 
+"cl_abap_behv_aux=>get_current_context(  IMPORTING from_projection = DATA( 'ZFOSL_I_TRAVEL_M' ) ).
+
 
   ENDMETHOD.
 
