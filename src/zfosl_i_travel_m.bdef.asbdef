@@ -16,7 +16,11 @@ etag master last_changed_at
   field ( mandatory ) agency_id, customer_id, begin_date, end_date, overall_status, booking_fee, currency_code;
 
   // Semantic Key field, which is readonly for the consumer, value is assigned in early numbering
-  field ( readonly ) travel_id;
+  field ( mandatory : create ) travel_id;
+
+    field ( readonly : update )
+   travel_id;
+
 
   // mapping entity's field types with table field types
   mapping for zfosl_travel_m corresponding ; association _booking

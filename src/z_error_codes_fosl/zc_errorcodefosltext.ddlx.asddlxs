@@ -1,0 +1,39 @@
+@Metadata.layer: #CUSTOMER
+@UI: {
+  headerInfo: {
+    typeName: 'ErrorCodeFoslText', 
+    typeNamePlural: 'ErrorCodeFoslTexts', 
+    title: {
+      type: #STANDARD, 
+      label: 'Error Code FOSL Text', 
+      value: 'Langu'
+    }
+  }
+}
+annotate view ZC_ErrorCodeFoslText with
+{
+  @UI.facet: [ {
+    id: 'ZI_ErrorCodeFoslText', 
+    purpose: #STANDARD, 
+    type: #IDENTIFICATION_REFERENCE, 
+    label: 'Error Code FOSL Text', 
+    position: 1 
+  } ]
+  @UI.identification: [ {
+    position: 1 , 
+    label: 'Langu'
+  } ]
+  @UI.lineItem: [ {
+    position: 1 , 
+    label: 'Langu'
+  } ]
+  Langu;
+  
+  @UI.identification: [ {
+    position: 2 
+  } ]
+  @UI.lineItem: [ {
+    position: 2 
+  } ]
+  Description;
+}

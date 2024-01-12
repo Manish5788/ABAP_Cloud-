@@ -1,0 +1,115 @@
+managed with additional save implementation in class ZBP_I_ERRORCODEFOSL_S unique;
+strict;
+with draft;
+
+define behavior for ZI_ErrorCodeFosl_S alias ErrorCodeFoslAll
+draft table ZERRCODE_FO_D_S
+with unmanaged save
+lock master total etag LastChangedAtMax
+authorization master( global )
+
+{
+  field ( readonly )
+   SingletonID;
+
+  field ( notrigger )
+   SingletonID,
+   HideTransport,
+   LastChangedAtMax;
+
+
+  update;
+  internal create;
+  internal delete;
+
+  draft action ( features : instance ) Edit;
+  draft action Activate optimized;
+  draft action Discard;
+  draft action Resume;
+  draft determine action Prepare;
+  action ( features : instance ) SelectCustomizingTransptReq parameter D_SelectCustomizingTransptReqP result [1] $self;
+
+  association _ErrorCodeFosl { create ( features : instance ); with draft; }
+}
+
+define behavior for ZI_ErrorCodeFosl alias ErrorCodeFosl
+persistent table ZERRCODE_FOSL
+draft table ZERRCODE_FOSL_D
+etag master LocalLastChangedAt
+lock dependent by _ErrorCodeFoslAll
+authorization dependent by _ErrorCodeFoslAll
+
+{
+  field ( mandatory : create )
+   ErrorCode;
+
+  field ( readonly )
+   SingletonID,
+   LastChangedAt,
+   LocalLastChangedAt;
+
+  field ( readonly : update )
+   ErrorCode;
+
+  field ( notrigger )
+   SingletonID,
+   LastChangedAt,
+   LocalLastChangedAt;
+
+
+  update( features : global );
+  delete( features : global );
+
+  mapping for ZERRCODE_FOSL
+  {
+    ErrorCode = ERROR_CODE;
+    LastChangedAt = LAST_CHANGED_AT;
+    LocalLastChangedAt = LOCAL_LAST_CHANGED_AT;
+  }
+
+  association _ErrorCodeFoslAll { with draft; }
+  association _ErrorCodeFoslText { create ( features : global ); with draft; }
+
+  validation ValidateTransportRequest on save ##NOT_ASSIGNED_TO_DETACT { create; update; delete; }
+}
+
+define behavior for ZI_ErrorCodeFoslText alias ErrorCodeFoslText
+persistent table ZERRCODET_FOSL
+draft table ZERRCODET_FOS_D
+etag master LocalLastChangedAt
+lock dependent by _ErrorCodeFoslAll
+authorization dependent by _ErrorCodeFoslAll
+
+{
+  field ( mandatory : create )
+   Langu;
+
+  field ( readonly )
+   SingletonID,
+   ErrorCode,
+   LocalLastChangedAt;
+
+  field ( readonly : update )
+   Langu;
+
+  field ( notrigger )
+   SingletonID,
+   LocalLastChangedAt;
+
+
+  update( features : global );
+  delete( features : global );
+
+  mapping for ZERRCODET_FOSL
+  {
+    Langu = LANGU;
+    ErrorCode = ERROR_CODE;
+    Description = DESCRIPTION;
+    LocalLastChangedAt = LOCAL_LAST_CHANGED_AT;
+  }
+
+  association _ErrorCodeFoslAll { with draft; }
+  association _ErrorCodeFosl { with draft; }
+
+  validation ValidateTransportRequest on save ##NOT_ASSIGNED_TO_DETACT { create; update; delete; }
+}

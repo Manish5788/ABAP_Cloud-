@@ -1,0 +1,6 @@
+@ObjectModel.leadingEntity.name: 'ZC_ErrorCodeFosl_S'
+define service ZUI_ERRORCODEFOSL {
+  expose ZC_ERRORCODEFOSL_S as ErrorCodeFoslAll;
+  expose ZC_ERRORCODEFOSL as ErrorCodeFosl;
+  expose ZC_ERRORCODEFOSLTEXT as ErrorCodeFoslText;
+}

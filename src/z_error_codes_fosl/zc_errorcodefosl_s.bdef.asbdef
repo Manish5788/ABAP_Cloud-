@@ -1,0 +1,40 @@
+projection implementation in class ZBP_C_ERRORCODEFOSL_S unique;
+strict;
+use draft;
+
+define behavior for ZC_ErrorCodeFosl_S alias ErrorCodeFoslAll
+
+{
+  use action Edit;
+  use action Activate;
+  use action Discard;
+  use action Resume;
+  use action Prepare;
+  use action SelectCustomizingTransptReq;
+
+  use association _ErrorCodeFosl { create ( augment ); with draft; }
+}
+
+define behavior for ZC_ErrorCodeFosl alias ErrorCodeFosl
+
+{
+  field ( modify )
+   Description;
+
+
+  use update( augment );
+  use delete;
+
+  use association _ErrorCodeFoslAll { with draft; }
+  use association _ErrorCodeFoslText { create; with draft; }
+}
+
+define behavior for ZC_ErrorCodeFoslText alias ErrorCodeFoslText
+
+{
+  use update;
+  use delete;
+
+  use association _ErrorCodeFoslAll { with draft; }
+  use association _ErrorCodeFosl { with draft; }
+}
